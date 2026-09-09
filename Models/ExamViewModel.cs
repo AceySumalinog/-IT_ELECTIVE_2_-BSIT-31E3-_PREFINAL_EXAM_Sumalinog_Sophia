@@ -1,4 +1,4 @@
-﻿namespace IT_ELECTIVE_2_BSIT31E3_PREFINAL_EXAM_Sumalino_Sophia.Models
+﻿namespace IT_ELECTIVE_2_BSIT31E3_PREFINAL_EXAM_Sumalinog_Sophia.Models
 {
     public class ExamViewModel
     {
