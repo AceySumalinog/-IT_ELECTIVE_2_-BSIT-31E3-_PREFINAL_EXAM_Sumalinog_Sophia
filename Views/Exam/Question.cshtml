@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Quest 01";
+}
+
+<link rel="stylesheet" href="~/css/exam.css" />
+
+<div class="system-page">
+
+    <div class="system-header">
+        <div class="system-label">SYSTEM WINDOW</div>
+        <div class="system-line"></div>
+        <h1>QUEST 01</h1>
+        <p class="subtitle">MVC EXAM HUNTER</p>
+    </div>
+
+    <div class="mission-window">
+
+        <div class="window-header">
+            <span>⚔ QUEST INFORMATION</span>
+            <span>QUEST 01 / 20</span>
+        </div>
+
+        <div class="player-content">
+
+            <div class="quest-number">
+                QUESTION 01
+            </div>
+
+            <div class="mission-title">
+                MAIN QUEST
+            </div>
+
+            <div class="mission-text">
+                Awaiting question data from the System...
+            </div>
+
+            <div class="system-message">
+                <div class="message-title">SYSTEM MESSAGE</div>
+                <div class="message-content">
+                    The Player has entered the examination dungeon.
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="start-section">
+        <a asp-controller="Exam"
+           asp-action="Index"
+           class="start-button">
+            ← RETURN TO STATUS
+        </a>
+    </div>
+
+    <div class="system-footer">
+        PLAYER: SUMALINOG SOPHIA |
+        CLASS: BSIT31E3 |
+        SYSTEM: MVC EXAM HUNTER
+    </div>
+
+</div>
