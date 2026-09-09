@@ -1,0 +1,258 @@
+﻿@model IT_ELECTIVE_2_BSIT31E3_PREFINAL_EXAM_Sumalinog_Sophia.Models.ExamViewModel
+
+@{
+    ViewData["Title"] = "System Awakening";
+}
+
+<div class="system-page">
+
+    <!-- SYSTEM HEADER -->
+    <div class="system-header">
+        <div class="system-label">
+            SYSTEM // AWAKENING
+        </div>
+
+        <div class="system-line"></div>
+
+        <h1>IT ELECTIVE 2</h1>
+
+        <p class="subtitle">
+            WEB SYSTEM AND TECHNOLOGIES
+        </p>
+
+        <div class="exam-tag">
+            PREFINAL EXAMINATION DUNGEON
+        </div>
+    </div>
+
+
+    <!-- SYSTEM MESSAGE -->
+    <div class="system-message">
+
+        <div class="message-title">
+            ⚡ SYSTEM MESSAGE
+        </div>
+
+        <div class="message-content">
+            「@Model.SystemMessage」
+        </div>
+
+        <div class="awakening">
+            @Model.SystemStatus
+        </div>
+
+    </div>
+
+
+    <!-- PLAYER STATUS -->
+    <div class="player-window">
+
+        <div class="window-header">
+            <span>👤 PLAYER STATUS</span>
+            <span>● ONLINE</span>
+        </div>
+
+
+        <div class="player-content">
+
+            <!-- PLAYER IDENTITY -->
+            <div class="player-identity">
+
+                <div class="avatar">
+                    ⚔️
+                </div>
+
+                <div class="player-info">
+
+                    <div class="player-name">
+                        @Model.PlayerName
+                    </div>
+
+                    <div class="player-title">
+                        「@Model.PlayerTitle」
+                    </div>
+
+                    <div class="player-class">
+                        CLASS: @Model.ClassSection
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- LEVEL / RANK -->
+            <div class="stats">
+
+                <div class="stat-box">
+
+                    <div class="stat-label">
+                        LEVEL
+                    </div>
+
+                    <div class="stat-value">
+                        @Model.Level
+                    </div>
+
+                </div>
+
+
+                <div class="stat-box rank-box">
+
+                    <div class="stat-label">
+                        RANK
+                    </div>
+
+                    <div class="stat-value">
+                        @Model.Rank
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- EXP -->
+            <div class="exp-section">
+
+                <div class="exp-header">
+
+                    <span>
+                        EXPERIENCE
+                    </span>
+
+                    <span>
+                        @Model.CurrentExp / @Model.ExpRequired EXP
+                    </span>
+
+                </div>
+
+                <div class="exp-bar">
+
+                    <div class="exp-fill"
+                         style="width: @Model.ExpPercentage%">
+                    </div>
+
+                </div>
+
+                <div class="exp-text">
+                    @Model.ExpPercentage% TO NEXT LEVEL
+                </div>
+
+            </div>
+
+
+            <!-- QUEST PROGRESS -->
+            <div class="quest-section">
+
+                <div class="quest-header">
+                    <span>📜 QUEST PROGRESS</span>
+
+                    <span>
+                        @Model.CompletedQuests / @Model.TotalQuests
+                    </span>
+                </div>
+
+                <div class="quest-bar">
+
+                    <div class="quest-fill"
+                         style="width: @Model.ProgressPercentage%">
+                    </div>
+
+                </div>
+
+                <div class="quest-text">
+
+                    @Model.ProgressPercentage% COMPLETE
+
+                </div>
+
+            </div>
+
+
+            <!-- CURRENT QUEST -->
+            <div class="current-quest">
+
+                <div class="quest-number">
+                    QUEST @Model.CurrentQuest.ToString("00")
+                </div>
+
+                <div class="quest-status">
+                    @Model.CurrentQuestStatus
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- MISSION -->
+    <div class="mission-window">
+
+        <div class="mission-title">
+            ⚔️ MAIN QUEST
+        </div>
+
+        <div class="mission-text">
+
+            「Clear all 20 examination quests
+            and prove your mastery of
+            Web Systems and Technologies.」
+
+        </div>
+
+        <div class="mission-reward">
+
+            <span>REWARD</span>
+
+            <span>
+                ⭐ EXP
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- START BUTTON -->
+    <div class="start-section">
+
+        <a asp-controller="Exam"
+           asp-action="Question"
+           class="start-button">
+
+            ⚔️ ENTER THE DUNGEON
+
+        </a>
+
+        <div class="start-warning">
+
+            [ SYSTEM WARNING ]
+
+            <br />
+
+            Once the dungeon begins,
+            there is no turning back.
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+    <div class="system-footer">
+
+        SYSTEM ID:
+        IT-ELECTIVE-2-PREFINAL
+
+        <br />
+
+        STATUS:
+        AWAITING PLAYER
+
+    </div>
+
+</div>
