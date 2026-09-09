@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Quest 07";
+    ViewData["Title"] = "Quest 08";
 }
 
 <link rel="stylesheet" href="~/css/exam.css" />
@@ -9,7 +9,7 @@
     <div class="system-header">
         <div class="system-label">SYSTEM WINDOW</div>
         <div class="system-line"></div>
-        <h1>QUEST 07</h1>
+        <h1>QUEST 08</h1>
         <p class="subtitle">MVC EXAM HUNTER</p>
     </div>
 
@@ -17,13 +17,13 @@
 
         <div class="window-header">
             <span>⚔ QUEST INFORMATION</span>
-            <span>QUEST 07 / 20</span>
+            <span>QUEST 08 / 20</span>
         </div>
 
         <div class="player-content">
 
             <div class="quest-number">
-                QUESTION 07
+                QUESTION 08
             </div>
 
             <div class="mission-title">
@@ -31,8 +31,14 @@
             </div>
 
             <div class="mission-text">
-                A Student belongs to exactly one Section, while a Section
-                can contain many students. What type of relationship is this?
+                In the following example, what is SectionId?
+
+                <br><br>
+
+                <code>
+                    public int SectionId { get; set; }<br>
+                    public Section Section { get; set; }
+                </code>
             </div>
 
             <div class="system-message">
@@ -43,13 +49,13 @@
 
                 <div class="message-content">
 
-                    <p><strong>A.</strong> One-to-One</p>
+                    <p><strong>A.</strong> Primary key of Student</p>
 
-                    <p><strong>B.</strong> One-to-Many</p>
+                    <p><strong>B.</strong> Foreign key referencing Section</p>
 
-                    <p><strong>C.</strong> Many-to-Many</p>
+                    <p><strong>C.</strong> Navigation property</p>
 
-                    <p><strong>D.</strong> Many-to-One only</p>
+                    <p><strong>D.</strong> Database connection string</p>
 
                 </div>
 
