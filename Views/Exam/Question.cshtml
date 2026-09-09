@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Quest 11";
+    ViewData["Title"] = "Quest 12";
 }
 
 <link rel="stylesheet" href="~/css/exam.css" />
@@ -9,7 +9,7 @@
     <div class="system-header">
         <div class="system-label">SYSTEM WINDOW</div>
         <div class="system-line"></div>
-        <h1>QUEST 11</h1>
+        <h1>QUEST 12</h1>
         <p class="subtitle">MVC EXAM HUNTER</p>
     </div>
 
@@ -17,13 +17,13 @@
 
         <div class="window-header">
             <span>⚔ QUEST INFORMATION</span>
-            <span>QUEST 11 / 20</span>
+            <span>QUEST 12 / 20</span>
         </div>
 
         <div class="player-content">
 
             <div class="quest-number">
-                QUESTION 11
+                QUESTION 12
             </div>
 
             <div class="mission-title">
@@ -31,8 +31,16 @@
             </div>
 
             <div class="mission-text">
-                Why might a ViewModel be used when displaying Student
-                and Section information?
+                Consider this query:
+                <br><br>
+
+                <code>
+                    var students = _context.Students.Include(s =&gt; s.Section).ToList();
+                </code>
+
+                <br><br>
+
+                What is the main benefit of Include(s =&gt; s.Section)?
             </div>
 
             <div class="system-message">
@@ -43,20 +51,20 @@
 
                 <div class="message-content">
 
-                    <p><strong>A.</strong> To replace the database</p>
+                    <p><strong>A.</strong> It loads the related Section navigation property</p>
 
-                    <p><strong>B.</strong> To combine or shape the data specifically needed by the view</p>
+                    <p><strong>B.</strong> It creates a Section object manually</p>
 
-                    <p><strong>C.</strong> To automatically create database tables</p>
+                    <p><strong>C.</strong> It removes the foreign key</p>
 
-                    <p><strong>D.</strong> To prevent controllers from using LINQ</p>
+                    <p><strong>D.</strong> It prevents the query from accessing the database</p>
 
                 </div>
 
             </div>
 
             <div class="mission-reward">
-                ⭐ CORRECT ANSWER: B
+                ⭐ CORRECT ANSWER: A
             </div>
 
         </div>
