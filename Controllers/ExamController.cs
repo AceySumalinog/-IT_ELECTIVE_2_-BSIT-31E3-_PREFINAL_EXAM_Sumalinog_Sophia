@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using IT_ELECTIVE_2_BSIT31E3_PREFINAL_EXAM_Sumalinog_Sophia.Models;
+﻿using IT_ELECTIVE_2_BSIT31E3_PREFINAL_EXAM_Sumalinog_Sophia.Models;
+using Microsoft.AspNetCore.Mvc;
 
-namespace IT_ELECTIVE_2_BSIT31E3_PREFINAL_EXAM_Sumalinog_Sophia.Controllers
+namespace IT_ELECTIVE_2_BSIT31E3_PREFINAL_EXAM_Sumalino_Sophia.Controllers
 {
     public class ExamController : Controller
     {
@@ -9,7 +9,7 @@ namespace IT_ELECTIVE_2_BSIT31E3_PREFINAL_EXAM_Sumalinog_Sophia.Controllers
         {
             var player = new ExamViewModel
             {
-                PlayerName = "Sumalinog, Sophia",
+                PlayerName = "Sumalino Sophia",
                 ClassSection = "BSIT31E3",
                 PlayerTitle = "MVC EXAM HUNTER",
 
@@ -31,6 +31,12 @@ namespace IT_ELECTIVE_2_BSIT31E3_PREFINAL_EXAM_Sumalinog_Sophia.Controllers
             };
 
             return View(player);
+        }
+
+        public IActionResult Question()
+        {
+            ViewData["Title"] = "Quest 01";
+            return View();
         }
     }
 }
