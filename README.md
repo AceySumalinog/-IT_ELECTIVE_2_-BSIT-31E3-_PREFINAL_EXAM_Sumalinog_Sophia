@@ -1,137 +1,88 @@
-# ⚔️ IT ELECTIVE 2 — PREFINAL EXAM
+# MVC EXAM HUNTER
 
-## 「SYSTEM: AWAKENING」
+## ASP.NET Core MVC Pre-Final Exam
 
-**Name:** Sumalinog, Sophia  
-**Class & Section:** BSIT31E3  
-**Subject:** IT Elective 2 – Web System and Technologies  
-**Academic Year:** 2026–2027  
-**Examination:** Prefinals Examination
+**Name:** Sumalinog Sophia  
+**Class/Section:** BSIT31E3  
+**Project:** MVC EXAM HUNTER
 
 ---
 
-## 🗡️ SYSTEM OVERVIEW
+## Project Description
 
-Welcome to the Prefinal Exam Dungeon.
+MVC EXAM HUNTER is an ASP.NET Core MVC web application created for the IT Elective 2 Pre-Final Exam.
 
-This project is an ASP.NET Core MVC application designed to
-present the examination questions and their corresponding
-answers in a creative Manhwa-inspired Level-Up System.
-
-Instead of displaying the examination as a simple questionnaire,
-each question is treated as a quest that the player must clear.
+The application presents the exam questions as a Manhwa-inspired RPG leveling system. The player answers each quest and receives experience, level progression, rank progression, and quest completion progress.
 
 ---
 
-## 🎮 LEVEL-UP SYSTEM
+## Features
 
-| System | Description |
-|---|---|
-| ⚔️ Quest | Examination Question |
-| ⭐ EXP | Experience earned |
-| 🆙 Level | Progress through questions |
-| 🏆 Rank | Overall examination progress |
-| 👑 Boss Quest | Final examination item |
-
----
-
-## 🧩 FEATURES
-
-- ASP.NET Core MVC
-- Manhwa-inspired interface
-- Question and answer display
-- Quest-based navigation
-- EXP and level progression
-- Creative UI design
-- No database required
-- Responsive layout
+- Player Profile / Status
+- 20 Multiple Choice Questions
+- Correct and Incorrect Answer Detection
+- Automatic Quest Progress
+- EXP System
+- Level System
+- Rank System
+- Progress Bar
+- Saved Exam Progress
+- Automatic Return to Player Status after an incorrect answer
+- Next Quest navigation
+- Exam Completion Status
+- Reset Exam Progress
 
 ---
 
-## 🛠️ TECHNOLOGIES
+## Level System
+
+| Completed Quests | Level | Rank |
+|---|---:|---|
+| 0–4 | Level 1 | E |
+| 5–9 | Level 2 | C |
+| 10–14 | Level 3 | B |
+| 15–19 | Level 4 | A |
+| 20 | Level 5 | S |
+
+---
+
+## Technologies Used
 
 - C#
 - ASP.NET Core MVC
 - Razor Views
 - HTML
 - CSS
-- Bootstrap
+- JavaScript
+- Git
+- GitHub
 
 ---
 
-## 📚 EXAM COVERAGE
+## Database
 
-The examination contains 20 multiple-choice questions covering
-topics related to:
+This project does **not** use a database, following the exam requirements.
 
-- Entity Framework Core
-- Database-First development
-- DbContext
-- Relationships
-- Foreign Keys
-- Navigation Properties
-- Include()
-- ViewModels
-- Client-side validation
-- Server-side validation
-- Data integrity
-- Exception handling
-- HTTP 404 responses
+Exam progress is stored locally using a JSON file.
 
 ---
 
-## ⚔️ QUEST STRUCTURE
+## Project Structure
 
 ```text
-QUEST 01 → QUEST 02 → QUEST 03 → ... → QUEST 20
+Controllers/
+    ExamController.cs
 
+Models/
+    ExamViewModel.cs
 
+Views/
+    Exam/
+        Index.cshtml
+        Question.cshtml
 
-## 👤 PLAYER PROFILE
+wwwroot/
+    css/
+        exam.css
 
-> 「SYSTEM INITIALIZING...」
-
-### 🧑 PLAYER INFORMATION
-
-| STATUS | INFORMATION |
-|---|---|
-| 👤 Player Name | Sumalinog, Sophia |
-| 🎓 Class & Section | BSIT31E3 |
-| 📚 Subject | IT Elective 2 – Web System and Technologies |
-| 🏫 Academic Year | 2026–2027 |
-| ⚔️ Current Rank | E-Rank |
-| ⭐ Current Level | Level 1 |
-| 💠 Current EXP | 0 / 100 |
-| 🗺️ Current Mission | Prefinal Examination Dungeon |
-| 🎯 Total Quests | 20 Questions |
-| 👑 Final Objective | Clear All 20 Quests |
-
----
-
-### 📊 PLAYER STATUS
-
-```text
-╔══════════════════════════════════════╗
-║          PLAYER STATUS WINDOW        ║
-╠══════════════════════════════════════╣
-║                                      ║
-║  NAME: Sumalinog, Sophia             ║
-║  CLASS: BSIT31E3                     ║
-║  TITLE  : MVC EXAM HUNTER            ║
-║  RANK: E                             ║
-║  LEVEL: 1                            ║
-║                                      ║
-║  EXP: 0 / 100                        ║
-║  QUEST PROGRESS: 0 / 20              ║
-║                                      ║
-║  STATUS : AWAKENING...               ║
-║                                      ║
-╚══════════════════════════════════════╝
-
-
-### MAIN OBJECTIVE
-
-[ QUESTS REMAINING: 20 ]
-[ EXP REQUIRED: 100 ]
-[ CURRENT STATUS: ACTIVE ]
-
+README.md

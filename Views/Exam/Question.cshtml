@@ -1,80 +1,261 @@
-﻿@{
-    ViewData["Title"] = "Quest 20";
+﻿@model IT_ELECTIVE_2_BSIT31E3_PREFINAL_EXAM_Sumalinog_Sophia.Controllers.ExamQuestion
+
+@{
+    ViewData["Title"] = $"Quest {Model.Number:00}";
 }
 
 <link rel="stylesheet" href="~/css/exam.css" />
 
 <div class="system-page">
 
+    <!-- SYSTEM HEADER -->
     <div class="system-header">
-        <div class="system-label">SYSTEM WINDOW</div>
-        <div class="system-line"></div>
-        <h1>QUEST 20</h1>
-        <p class="subtitle">MVC EXAM HUNTER</p>
-    </div>
 
-    <div class="mission-window">
-
-        <div class="window-header">
-            <span>⚔ QUEST INFORMATION</span>
-            <span>QUEST 20 / 20</span>
+        <div class="system-label">
+            SYSTEM WINDOW
         </div>
 
+        <div class="system-line"></div>
+
+        <h1>
+            QUEST @Model.Number.ToString("00")
+        </h1>
+
+        <p class="subtitle">
+            MVC EXAM HUNTER
+        </p>
+
+    </div>
+
+
+    <!-- QUEST WINDOW -->
+    <div class="mission-window">
+
+        <!-- WINDOW HEADER -->
+        <div class="window-header">
+
+            <span>
+                ⚔ QUEST INFORMATION
+            </span>
+
+            <span>
+                QUEST @Model.Number / 20
+            </span>
+
+        </div>
+
+
+        <!-- QUEST CONTENT -->
         <div class="player-content">
 
+            <!-- QUESTION NUMBER -->
             <div class="quest-number">
-                QUESTION 20
+                QUESTION @Model.Number
             </div>
 
+
+            <!-- QUESTION TYPE -->
             <div class="mission-title">
                 MULTIPLE CHOICE
             </div>
 
+
+            <!-- QUESTION -->
             <div class="mission-text">
-                A student already belongs to Section A for a particular subject. The application attempts 
-                to assign the same student to Section A again. What is the primary concern?
+                @Model.Question
             </div>
 
-            <div class="system-message">
 
-                <div class="message-title">
-                    SELECT YOUR ANSWER
+            <!-- ANSWERS -->
+            <form id="answerForm">
+
+                <div class="system-message">
+
+                    <div class="message-title">
+                        SELECT YOUR ANSWER
+                    </div>
+
+
+                    <div class="message-content">
+
+                        <!-- ANSWER A -->
+                        <label class="answer-option">
+
+                            <input type="radio"
+                                   name="answer"
+                                   value="A"
+                                   onchange="selectAnswer('A')" />
+
+                            <span>
+                                <strong>A.</strong>
+                                @Model.A
+                            </span>
+
+                        </label>
+
+
+                        <!-- ANSWER B -->
+                        <label class="answer-option">
+
+                            <input type="radio"
+                                   name="answer"
+                                   value="B"
+                                   onchange="selectAnswer('B')" />
+
+                            <span>
+                                <strong>B.</strong>
+                                @Model.B
+                            </span>
+
+                        </label>
+
+
+                        <!-- ANSWER C -->
+                        <label class="answer-option">
+
+                            <input type="radio"
+                                   name="answer"
+                                   value="C"
+                                   onchange="selectAnswer('C')" />
+
+                            <span>
+                                <strong>C.</strong>
+                                @Model.C
+                            </span>
+
+                        </label>
+
+
+                        <!-- ANSWER D -->
+                        <label class="answer-option">
+
+                            <input type="radio"
+                                   name="answer"
+                                   value="D"
+                                   onchange="selectAnswer('D')" />
+
+                            <span>
+                                <strong>D.</strong>
+                                @Model.D
+                            </span>
+
+                        </label>
+
+                    </div>
+
                 </div>
 
-                <div class="message-content">
 
-                    <p><strong>A.</strong> Data integrity</p>
+                <!-- RESULT MESSAGE -->
+                <div id="answerResult"
+                     class="mission-reward"
+                     style="display: none;">
+                </div>
 
-                    <p><strong>B.</strong> HTML formatting</p>
 
-                    <p><strong>C.</strong> CSS inheritance</p>
+                <!-- NEXT QUEST -->
+                <div class="start-section">
 
-                    <p><strong>D.</strong> Razor syntax</p>
+                    @if (Model.Number < 20)
+                    {
+                        <a href="/Exam/Complete/@Model.Number"
+                           id="nextButton"
+                           class="start-button"
+                           style="display: none;">
+
+                            NEXT QUEST →
+
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="/Exam/Complete/@Model.Number"
+                           id="nextButton"
+                           class="start-button"
+                           style="display: none;">
+
+                            🏆 COMPLETE QUEST
+
+                        </a>
+                    }
 
                 </div>
 
-            </div>
-
-            <div class="mission-reward">
-                ⭐ CORRECT ANSWER: A
-            </div>
+            </form>
 
         </div>
 
     </div>
 
-    <div class="start-section">
-        <a asp-controller="Exam"
-           asp-action="Index"
-           class="start-button">
-            ← RETURN TO STATUS
-        </a>
-    </div>
 
+    <!-- FOOTER -->
     <div class="system-footer">
+
         PLAYER: SUMALINOG SOPHIA |
         CLASS: BSIT31E3 |
         SYSTEM: MVC EXAM HUNTER
+
     </div>
 
 </div>
+
+
+<script>
+
+    function selectAnswer(selectedAnswer) {
+
+        const correctAnswer = "@Model.Answer";
+
+        const result = document.getElementById("answerResult");
+
+        const nextButton = document.getElementById("nextButton");
+
+
+        // Disable all answers after selection
+        const answerInputs =
+            document.querySelectorAll('input[name="answer"]');
+
+        answerInputs.forEach(function (input) {
+            input.disabled = true;
+        });
+
+
+        result.style.display = "block";
+
+
+        // =========================
+        // CORRECT ANSWER
+        // =========================
+
+        if (selectedAnswer === correctAnswer) {
+
+            result.innerHTML =
+                "⭐ CORRECT! ANSWER: " + correctAnswer;
+
+            nextButton.style.display = "inline-block";
+
+        }
+
+
+        // =========================
+        // WRONG ANSWER
+        // =========================
+
+        else {
+
+            result.innerHTML =
+                "❌ INCORRECT! RETURNING TO PLAYER STATUS...";
+
+
+            // Automatically return to Player Status
+            setTimeout(function () {
+
+                window.location.href = "/Exam";
+
+            }, 1000);
+
+        }
+
+    }
+
+</script>
