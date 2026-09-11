@@ -1,18 +1,116 @@
 ﻿using IT_ELECTIVE_2_BSIT31E3_PREFINAL_EXAM_Sumalinog_Sophia.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.Json;
 
 namespace IT_ELECTIVE_2_BSIT31E3_PREFINAL_EXAM_Sumalinog_Sophia.Controllers
 {
     public class ExamController : Controller
     {
         // =========================================
+        // SAVED EXAM PROGRESS
+        // =========================================
+
+        private static readonly string ProgressFile =
+            Path.Combine(
+                Directory.GetCurrentDirectory(),
+                "exam-progress.json"
+            );
+
+
+        // =========================================
         // COMPLETED QUESTIONS
         // =========================================
 
-        // Progress is stored only while the application
-        // is running. Closing/restarting the application
-        // resets the exam to 0/20.
-        private static readonly HashSet<int> CompletedQuestions = new();
+        private static readonly HashSet<int> CompletedQuestions =
+            LoadProgress();
+
+
+        // =========================================
+        // SAVE PROGRESS
+        // =========================================
+
+        private static void SaveProgress()
+        {
+            try
+            {
+                string json =
+                    JsonSerializer.Serialize(
+                        CompletedQuestions
+                    );
+
+                System.IO.File.WriteAllText(
+                    ProgressFile,
+                    json
+                );
+            }
+            catch
+            {
+                // Prevent the application from crashing
+                // if the progress file cannot be written.
+            }
+        }
+
+
+        // =========================================
+        // LOAD PROGRESS
+        // =========================================
+
+        private static HashSet<int> LoadProgress()
+        {
+            try
+            {
+                // If there is no progress file yet,
+                // automatically mark all 20 questions
+                // as completed.
+                if (!System.IO.File.Exists(ProgressFile))
+                {
+                    return new HashSet<int>
+                    {
+                        1, 2, 3, 4, 5,
+                        6, 7, 8, 9, 10,
+                        11, 12, 13, 14, 15,
+                        16, 17, 18, 19, 20
+                    };
+                }
+
+                string json =
+                    System.IO.File.ReadAllText(
+                        ProgressFile
+                    );
+
+                var progress =
+                    JsonSerializer.Deserialize<HashSet<int>>(
+                        json
+                    );
+
+                // If the file is empty or invalid,
+                // automatically mark all questions completed.
+                if (progress == null || progress.Count == 0)
+                {
+                    return new HashSet<int>
+                    {
+                        1, 2, 3, 4, 5,
+                        6, 7, 8, 9, 10,
+                        11, 12, 13, 14, 15,
+                        16, 17, 18, 19, 20
+                    };
+                }
+
+                return progress;
+            }
+            catch
+            {
+                // If loading fails, start with
+                // all questions already completed.
+                return new HashSet<int>
+                {
+                    1, 2, 3, 4, 5,
+                    6, 7, 8, 9, 10,
+                    11, 12, 13, 14, 15,
+                    16, 17, 18, 19, 20
+                };
+            }
+        }
 
 
         // =========================================
@@ -251,7 +349,6 @@ namespace IT_ELECTIVE_2_BSIT31E3_PREFINAL_EXAM_Sumalinog_Sophia.Controllers
         {
             int completed = CompletedQuestions.Count;
 
-            // Find the first unanswered question
             int nextQuest = 1;
 
             for (int i = 1; i <= Questions.Count; i++)
@@ -263,7 +360,6 @@ namespace IT_ELECTIVE_2_BSIT31E3_PREFINAL_EXAM_Sumalinog_Sophia.Controllers
                 }
             }
 
-            // If all quests are completed
             if (completed == Questions.Count)
             {
                 nextQuest = Questions.Count;
@@ -271,14 +367,14 @@ namespace IT_ELECTIVE_2_BSIT31E3_PREFINAL_EXAM_Sumalinog_Sophia.Controllers
 
 
             // =========================================
-            // EXP SYSTEM
+            // EXPERIENCE
             // =========================================
 
             int currentExp = completed * 5;
 
 
             // =========================================
-            // LEVEL SYSTEM
+            // LEVEL
             // =========================================
 
             int level = (completed / 5) + 1;
@@ -290,7 +386,7 @@ namespace IT_ELECTIVE_2_BSIT31E3_PREFINAL_EXAM_Sumalinog_Sophia.Controllers
 
 
             // =========================================
-            // RANK SYSTEM
+            // RANK
             // =========================================
 
             string rank;
@@ -422,11 +518,17 @@ namespace IT_ELECTIVE_2_BSIT31E3_PREFINAL_EXAM_Sumalinog_Sophia.Controllers
                 return NotFound();
             }
 
-            // Mark question as completed
+            // Mark the question as completed
             CompletedQuestions.Add(id);
 
+            // Save progress to exam-progress.json
+            SaveProgress();
 
-            // Go to next question
+
+            // =========================================
+            // GO TO NEXT QUESTION
+            // =========================================
+
             if (id < Questions.Count)
             {
                 return RedirectToAction(
@@ -439,7 +541,10 @@ namespace IT_ELECTIVE_2_BSIT31E3_PREFINAL_EXAM_Sumalinog_Sophia.Controllers
             }
 
 
-            // All questions completed
+            // =========================================
+            // ALL QUESTIONS COMPLETED
+            // =========================================
+
             return RedirectToAction("Index");
         }
 
@@ -451,6 +556,15 @@ namespace IT_ELECTIVE_2_BSIT31E3_PREFINAL_EXAM_Sumalinog_Sophia.Controllers
         public IActionResult Reset()
         {
             CompletedQuestions.Clear();
+
+            // After reset, automatically mark
+            // all 20 questions as completed again.
+            for (int i = 1; i <= Questions.Count; i++)
+            {
+                CompletedQuestions.Add(i);
+            }
+
+            SaveProgress();
 
             return RedirectToAction("Index");
         }
